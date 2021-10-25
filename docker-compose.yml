@@ -43,7 +43,7 @@ services:
         restart: always
         hostname: account
         volumes: 
-            - ./neoflex/bankAccount/src/main/resources/static/files/:/src/main/resources/static/files/
+            - ./bankAccount/src/main/resources/static/files/:/src/main/resources/static/files/
         environment: 
             - path.files.resources=/src/main/resources/static/files/
     keyspace:
