@@ -1,3 +1,16 @@
+# Stack
+
+![](https://img.shields.io/badge/Java-✓-blue.svg)
+![](https://img.shields.io/badge/Spring_Boot-✓-blue.svg)
+![](https://img.shields.io/badge/Cassandra-✓-blue.svg)
+![](https://img.shields.io/badge/Kafka-✓-blue.svg)
+![](https://img.shields.io/badge/gRPC-✓-blue.svg)
+![](https://img.shields.io/badge/RSocket-✓-blue.svg)
+![](https://img.shields.io/badge/REstAPI-✓-blue.svg)
+![](https://img.shields.io/badge/JSON-✓-blue.svg)
+![](https://img.shields.io/badge/Docker-✓-blue.svg)
+
+
 1. Разработать микросервис (далее MS) bankAccount, который генерирует банковские аккаунты из .txt файлов в директории accounts
 ```
 public class BankAccount {
