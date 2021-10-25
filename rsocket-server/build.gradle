@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id "com.palantir.docker" version "0.25.0"
+}
+
+group = 'com.neoflex'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+docker {
+	name "rsocket_server"
+	dockerfile file('Dockerfile')
+	copySpec.from(jar).rename(".*", "rsocket_server.jar")
+	buildArgs(['JAR_FILE': "rsocket_server.jar"])
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-rsocket'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-data-cassandra-reactive'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

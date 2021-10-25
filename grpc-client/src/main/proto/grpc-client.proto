@@ -1,0 +1,46 @@
+syntax = "proto3";
+option java_package = "com.neoflex.grpcserver";
+package com.neoflex.grpcserver;
+
+message RequestAccountType {
+  string accountType = 1;
+}
+
+message ResponseBankAccountInfo {
+  repeated BankAccountInfo bankAccountInfo = 1;
+}
+
+message BankAccountInfo {
+  Account account = 1;
+  Address address = 2;
+}
+
+message Account {
+  enum AccountType {
+    PAYMENT_ACCOUNT = 0;
+    LOAN_ACCOUNT = 1;
+    CURRENCY_ACCOUNT = 2;
+    CURRENT_ACCOUNT = 3;
+    DEPOSIT_ACCOUNT = 4;
+    PERSONAL_ACCOUNT = 5;
+    CARD_ACCOUNT = 6;
+    SPECIAL_ACCOUNT = 7;
+  }
+
+  uint64 accountNumber = 1;
+  AccountType accountType = 2;
+  string firstname = 3;
+  string lastname = 4;
+  string patronymic = 5;
+  string uuid = 6;
+}
+
+message Address {
+  string city = 1;
+  string state = 2;
+  string street = 3;
+}
+
+service BankAccountInfoService {
+  rpc getBankAccountInfo(RequestAccountType) returns (ResponseBankAccountInfo);
+}
